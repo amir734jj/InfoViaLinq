@@ -17,9 +17,6 @@ _utility.PropLambda(x => x.Parents.GreatParents.Parents.FatherName).GetAttribute
 _utility.PropLambda(x => x.Parents.GreatParents.Parents.FatherName);
 ```
 
-```
-
-
 Examples to get `MethodInfo` via Linq:
 
 ```csharp
