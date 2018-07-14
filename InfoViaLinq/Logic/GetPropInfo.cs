@@ -29,7 +29,7 @@ namespace InfoViaLinq.Logic
         public string GetPropertyName()
         {
             // create a list of property names
-            var nameTokens = new LinkedListWithInit<string>() { MemberExpresion.GetMemberExpressionName() };
+            var nameTokens = new LinkedListWithInit<string> { MemberExpresion.GetMemberExpressionName() };
             
             // get nested expression
             var parentExp = MemberExpresion.Expression;

@@ -7,7 +7,7 @@ namespace InfoViaLinq.Interfaces
     {
         LambdaExpression LambdaExpression { get; }
 
-        string MethodName();
+        string GetMethodName();
 
         MethodInfo GetMethodInfo();
     }

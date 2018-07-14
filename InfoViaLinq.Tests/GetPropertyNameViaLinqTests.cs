@@ -7,7 +7,7 @@ namespace InfoViaLinq.Tests
 {
     public class GetPropertyNameViaLinqTests
     {
-        private readonly IGetPropertyInfoViaLinq<Person> _utility;
+        private readonly IInfoViaLinq<Person> _utility;
 
         public GetPropertyNameViaLinqTests()
         {

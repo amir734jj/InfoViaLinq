@@ -12,7 +12,7 @@ namespace InfoViaLinq.Tests
             const string expected = "ToString";
             
             // Act
-            var name = InfoViaLinq<string>.New().FuncLambda<string>(x => x.ToString).MethodName();
+            var name = InfoViaLinq<string>.New().FuncLambda<string>(x => x.ToString).GetMethodName();
             
             // Assert
             Assert.Equal(expected, name);
@@ -25,7 +25,7 @@ namespace InfoViaLinq.Tests
             const string expected = "DoSomething";
             
             // Act
-            var name = InfoViaLinq<Person>.New().FuncLambda<int, double, string, string>(x => x.DoSomething).MethodName();
+            var name = InfoViaLinq<Person>.New().FuncLambda<int, double, string, string>(x => x.DoSomething).GetMethodName();
             
             // Assert
             Assert.Equal(expected, name);

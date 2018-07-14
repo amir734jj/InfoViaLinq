@@ -7,7 +7,7 @@ namespace InfoViaLinq.Interfaces
     /// Initialized instance of Utility
     /// </summary>
     /// <typeparam name="TSource"></typeparam>
-    public interface IGetPropertyInfoViaLinq<TSource>
+    public interface IInfoViaLinq<TSource>
     {
         #region Property
         

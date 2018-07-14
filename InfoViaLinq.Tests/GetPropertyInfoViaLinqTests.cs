@@ -8,11 +8,11 @@ namespace InfoViaLinq.Tests
 {
     public class GetPropertyInfoViaLinqTests
     {
-        private readonly IGetPropertyInfoViaLinq<Person> _utility;
+        private readonly IInfoViaLinq<Person> _utility;
 
         public GetPropertyInfoViaLinqTests()
         {
-            _utility = new InfoViaLinq<Person>();
+            _utility = InfoViaLinq<Person>.New();
         }
         
         [Fact]

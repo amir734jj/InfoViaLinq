@@ -26,7 +26,7 @@ namespace InfoViaLinq.Logic
         /// Returns the method name itself
         /// </summary>
         /// <returns></returns>
-        public string MethodName() => GetMethodInfo()?.Name;
+        public string GetMethodName() => GetMethodInfo()?.Name;
 
         /// <summary>
         /// Returns the method info

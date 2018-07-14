@@ -20,3 +20,5 @@ GetPropertyInfoViaLinq\.Tests/ForReadme\.cs
 InfoViaLinq/bin/
 
 InfoViaLinq/obj/
+
+InfoViaLinq\.Tests/obj/

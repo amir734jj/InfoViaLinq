@@ -10,7 +10,7 @@ namespace InfoViaLinq
     /// Utility to get property info via linq expression
     /// </summary>
     /// <typeparam name="TSource"></typeparam>
-    public class InfoViaLinq<TSource> : BaseBuilder<InfoViaLinq<TSource>>, IGetPropertyInfoViaLinq<TSource>
+    public class InfoViaLinq<TSource> : BaseBuilder<InfoViaLinq<TSource>>, IInfoViaLinq<TSource>
     {
         /// <summary>
         /// Converts lambda expression to member expression

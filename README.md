@@ -1,23 +1,31 @@
-# Property Info via Linq
+# InfoViaLinq
 
-This simple project grabs property name using Linq. Inspired by [this](https://stackoverflow.com/a/2916344/1834787) awesome StackOverFlow post.
+This is a rewrite of my other project [GetPropertyInfoViaLinq](https://github.com/amir734jj/PropertyInfoViaLinq). The goal of re-write to enable getting both 1) `PropertyInfo` 2) `MethodInfo`all using Linq.
 
-[Nuget Link](https://www.nuget.org/packages/GetPropertyInfoViaLinq/)
-
-Get property info via Linq's Expression
+Examples to get `PropertyInfo` via Linq:
 
 ```csharp
-IGetPropertyInfoViaLinq<Person> _utility = new GetPropertyInfoViaLinq<Person>();
+IInfoViaLinq<Person> _utility = InfoViaLinq<Person>.New();
 
 // returns: "Parents.GreatParents.Parents.FatherName"
-_utility.GetPropertyName(x => x.Parents.GreatParents.Parents.FatherName);
+_utility.PropLambda(x => x.Parents.GreatParents.Parents.FatherName).GetPropertyName();
 
 // returns custom attributes via linq
-_utility.GetAttribute(x => x.Parents.GreatParents.Parents.FatherName, typeof(DisplayAttribute));
+_utility.PropLambda(x => x.Parents.GreatParents.Parents.FatherName).GetAttribute<DisplayAttribute>();
 
 // returns PropertyInfo of "FatherName" via linq
-_utility.GetPropertyInfo(x => x.Parents.GreatParents.Parents.FatherName);
+_utility.PropLambda(x => x.Parents.GreatParents.Parents.FatherName);
 ```
 
-Notes:
-* Please see the unit test project for more info on how to use the package.
+```
+
+
+Examples to get `MethodInfo` via Linq:
+
+```csharp
+var str = InfoViaLinq<string>.New().FuncLambda<string>(x => x.ToString).GetMethodInfo().Name;
+// "ToString"
+
+var str = InfoViaLinq<string>.New().FuncLambda<int>(x => x.CompareTo).GetMethodInfo().Name;
+// "CompareTo"
+```
