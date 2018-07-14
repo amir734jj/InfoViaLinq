@@ -17,9 +17,6 @@ _utility.PropLambda(x => x.Parents.GreatParents.Parents.FatherName).GetAttribute
 _utility.PropLambda(x => x.Parents.GreatParents.Parents.FatherName);
 ```
 
-```
-
-
 Examples to get `MethodInfo` via Linq:
 
 ```csharp
@@ -29,3 +26,6 @@ var str = InfoViaLinq<string>.New().FuncLambda<string>(x => x.ToString).GetMetho
 var str = InfoViaLinq<string>.New().FuncLambda<int>(x => x.CompareTo).GetMethodInfo().Name;
 // "CompareTo"
 ```
+
+Notes:
+- To get `MethodInfo` code supports void methods and methods with up-to three parameters.
