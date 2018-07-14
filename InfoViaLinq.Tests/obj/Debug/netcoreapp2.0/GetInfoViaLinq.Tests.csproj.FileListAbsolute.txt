@@ -1,0 +1,17 @@
+C:\workspace\PropertyInfoViaLinq\GetInfoViaLinq.Tests\bin\Debug\netcoreapp2.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\workspace\PropertyInfoViaLinq\GetInfoViaLinq.Tests\bin\Debug\netcoreapp2.0\xunit.runner.reporters.netcoreapp10.dll
+C:\workspace\PropertyInfoViaLinq\GetInfoViaLinq.Tests\bin\Debug\netcoreapp2.0\xunit.runner.utility.netcoreapp10.dll
+C:\workspace\PropertyInfoViaLinq\GetInfoViaLinq.Tests\bin\Debug\netcoreapp2.0\GetInfoViaLinq.Tests.deps.json
+C:\workspace\PropertyInfoViaLinq\GetInfoViaLinq.Tests\bin\Debug\netcoreapp2.0\GetInfoViaLinq.Tests.runtimeconfig.json
+C:\workspace\PropertyInfoViaLinq\GetInfoViaLinq.Tests\bin\Debug\netcoreapp2.0\GetInfoViaLinq.Tests.runtimeconfig.dev.json
+C:\workspace\PropertyInfoViaLinq\GetInfoViaLinq.Tests\bin\Debug\netcoreapp2.0\GetInfoViaLinq.Tests.dll
+C:\workspace\PropertyInfoViaLinq\GetInfoViaLinq.Tests\bin\Debug\netcoreapp2.0\GetInfoViaLinq.Tests.pdb
+C:\workspace\PropertyInfoViaLinq\GetInfoViaLinq.Tests\bin\Debug\netcoreapp2.0\GetInfoViaLinq.dll
+C:\workspace\PropertyInfoViaLinq\GetInfoViaLinq.Tests\bin\Debug\netcoreapp2.0\GetInfoViaLinq.pdb
+C:\workspace\PropertyInfoViaLinq\GetInfoViaLinq.Tests\obj\Debug\netcoreapp2.0\GetInfoViaLinq.Tests.csprojAssemblyReference.cache
+C:\workspace\PropertyInfoViaLinq\GetInfoViaLinq.Tests\obj\Debug\netcoreapp2.0\GetInfoViaLinq.Tests.csproj.CoreCompileInputs.cache
+C:\workspace\PropertyInfoViaLinq\GetInfoViaLinq.Tests\obj\Debug\netcoreapp2.0\GetInfoViaLinq.Tests.AssemblyInfoInputs.cache
+C:\workspace\PropertyInfoViaLinq\GetInfoViaLinq.Tests\obj\Debug\netcoreapp2.0\GetInfoViaLinq.Tests.AssemblyInfo.cs
+C:\workspace\PropertyInfoViaLinq\GetInfoViaLinq.Tests\obj\Debug\netcoreapp2.0\GetInfoViaLinq.Tests.csproj.CopyComplete
+C:\workspace\PropertyInfoViaLinq\GetInfoViaLinq.Tests\obj\Debug\netcoreapp2.0\GetInfoViaLinq.Tests.dll
+C:\workspace\PropertyInfoViaLinq\GetInfoViaLinq.Tests\obj\Debug\netcoreapp2.0\GetInfoViaLinq.Tests.pdb
