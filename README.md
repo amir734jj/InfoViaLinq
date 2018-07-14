@@ -2,6 +2,8 @@
 
 This is a rewrite of my other project [GetPropertyInfoViaLinq](https://github.com/amir734jj/PropertyInfoViaLinq). The goal of re-write to enable getting both 1) `PropertyInfo` 2) `MethodInfo`all using Linq.
 
+[Nuget link](https://www.nuget.org/packages/InfoViaLinq/)
+
 Examples to get `PropertyInfo` via Linq:
 
 ```csharp
