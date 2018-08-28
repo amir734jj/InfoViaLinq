@@ -3,7 +3,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>InfoViaLinq</AssemblyName>
     <RootNamespace>InfoViaLinq</RootNamespace>
-    <Version>2.0.2</Version>
+    <Version>2.0.3</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/amir734jj/InfoViaLinq</RepositoryUrl>
     <PackageReleaseNotes>Rewrote the library from ground-up</PackageReleaseNotes>

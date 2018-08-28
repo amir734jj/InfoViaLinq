@@ -17,6 +17,6 @@ namespace InfoViaLinq.Interfaces
 
         TAttributeType GetAttribute<TAttributeType>() where TAttributeType : Attribute;
 
-        bool GetValue<TProp>(T source, out TProp value) where TProp: class;
+        bool GetValue<TProp>(T source, out TProp value);
     }
 }

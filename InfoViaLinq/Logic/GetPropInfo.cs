@@ -12,7 +12,7 @@ namespace InfoViaLinq.Logic
     {
         private readonly List<MemberInfo> _memberInfos;
         
-        private const string Deliminter = ".";
+        private const string Deliminter = "";
 
         public MemberExpression MemberExpresion { get; }
 
@@ -43,7 +43,7 @@ namespace InfoViaLinq.Logic
         /// <param name="source"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public bool GetValue<T>(TSource source, out T value) where T : class
+        public bool GetValue<T>(TSource source, out T value)
         {
             // If Source is null just return null as value and false as flag
             if (source == null)
@@ -61,7 +61,7 @@ namespace InfoViaLinq.Logic
             });
 
             // Return the value
-            value = nodeSource as T;
+            value = (T) nodeSource;
 
             return true;
         }
