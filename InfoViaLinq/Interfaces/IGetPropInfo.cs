@@ -7,7 +7,7 @@ namespace InfoViaLinq.Interfaces
     /// <summary>
     /// Returns the info
     /// </summary>
-    public interface IGetPropInfo<T>
+    public interface IGetPropInfo<in T>
     {
         MemberExpression MemberExpresion { get; }
         
@@ -16,5 +16,7 @@ namespace InfoViaLinq.Interfaces
         PropertyInfo GetPropertyInfo();
 
         TAttributeType GetAttribute<TAttributeType>() where TAttributeType : Attribute;
+
+        bool GetValue<TProp>(T source, out TProp value) where TProp: class;
     }
 }

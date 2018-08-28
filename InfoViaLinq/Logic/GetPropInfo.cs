@@ -1,14 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using InfoViaLinq.Extensions;
 using InfoViaLinq.Interfaces;
-using InfoViaLinq.Utilities;
 
 namespace InfoViaLinq.Logic
 {
     public class GetPropInfo<TSource> : IGetPropInfo<TSource>
     {
+        private readonly List<MemberInfo> _memberInfos;
+        
         private const string Deliminter = ".";
 
         public MemberExpression MemberExpresion { get; }
@@ -20,6 +23,8 @@ namespace InfoViaLinq.Logic
         public GetPropInfo(MemberExpression memberExpression)
         {
             MemberExpresion = memberExpression;
+
+            _memberInfos = ProcessPropLambdaMemberExpression(memberExpression);
         }
         
         /// <summary>
@@ -28,24 +33,37 @@ namespace InfoViaLinq.Logic
         /// <returns></returns>
         public string GetPropertyName()
         {
-            // create a list of property names
-            var nameTokens = new LinkedListWithInit<string> { MemberExpresion.GetMemberExpressionName() };
-            
-            // get nested expression
-            var parentExp = MemberExpresion.Expression;
+            // Join the tokens together
+            return string.Join(Deliminter, _memberInfos.Select(x => x.Name));
+        }
 
-            // while nested expression is member expression
-            while (parentExp is MemberExpression parentMemberExpression)
+        /// <summary>
+        /// Returns the nested value of root object
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public bool GetValue<T>(TSource source, out T value) where T : class
+        {
+            // If Source is null just return null as value and false as flag
+            if (source == null)
             {
-                // add string property name to the list
-                nameTokens.AddFirst(parentMemberExpression.GetMemberExpressionName());
-
-                // reset the parentExp to go one more level deep 
-                parentExp = parentMemberExpression.Expression;
+                value = default(T);
+                return false;
             }
+            
+            // Get node and implicitly cast it to object
+            object nodeSource = source;
+            
+            _memberInfos.ForEach(x =>
+            {
+                nodeSource = nodeSource?.GetType().GetProperty(x.Name)?.GetValue(nodeSource);
+            });
 
-            // join the tokens together
-            return string.Join(Deliminter, nameTokens);
+            // Return the value
+            value = nodeSource as T;
+
+            return true;
         }
 
         /// <summary>
@@ -65,6 +83,36 @@ namespace InfoViaLinq.Logic
         public TAttributeType GetAttribute<TAttributeType>() where TAttributeType : Attribute
         {
             return MemberExpresion.Member.GetCustomAttribute<TAttributeType>();
+        }
+
+        /// <summary>
+        /// Processes the PropLambda
+        /// </summary>
+        /// <param name="memberExpression"></param>
+        /// <returns></returns>
+        private static List<MemberInfo> ProcessPropLambdaMemberExpression(MemberExpression memberExpression)
+        {
+            // ReSharper disable once UseObjectOrCollectionInitializer
+            var memberExpressionPropertyInfos = new LinkedList<MemberInfo>();
+
+            // Initialize the root
+            memberExpressionPropertyInfos.AddFirst(memberExpression.Member);
+
+            // get nested expression
+            var parentExp = memberExpression.Expression;
+
+            // while nested expression is member expression
+            while (parentExp is MemberExpression parentMemberExpression)
+            {
+                // add string property name to the list
+                memberExpressionPropertyInfos.AddFirst(parentMemberExpression.Member);
+
+                // reset the parentExp to go one more level deep 
+                parentExp = parentMemberExpression.Expression;
+            }
+
+            // Return the list
+            return memberExpressionPropertyInfos.ToList();
         }
     }
 }
