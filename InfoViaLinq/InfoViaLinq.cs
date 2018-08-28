@@ -17,7 +17,7 @@ namespace InfoViaLinq
         /// </summary>
         /// <param name="exp"></param>
         /// <returns></returns>
-        public virtual MemberExpression ToMemeberExpression<TResult>(Expression<Func<TSource, TResult>> exp)
+        protected virtual MemberExpression ToMemeberExpression<TResult>(Expression<Func<TSource, TResult>> exp)
         {
             MemberExpression resultExp;
             var body = exp.Body;
