@@ -12,7 +12,7 @@ namespace InfoViaLinq.Logic
     {
         private readonly List<MemberInfo> _memberInfos;
         
-        private const string Deliminter = "";
+        private const string Deliminter = ".";
 
         public MemberExpression MemberExpresion { get; }
 
@@ -85,34 +85,53 @@ namespace InfoViaLinq.Logic
             return MemberExpresion.Member.GetCustomAttribute<TAttributeType>();
         }
 
+
+        /// <summary>
+        /// Simple Expression visitor to visit MemberExpression types
+        /// </summary>
+        private sealed class MemberExpressionVisitor : ExpressionVisitor
+        {
+            private readonly Expression _expression;
+            
+            private List<MemberInfo> _members;
+
+            public MemberExpressionVisitor(Expression expression)
+            {
+                _expression = expression;
+            }
+            
+            protected override Expression VisitMember(MemberExpression node)
+            {
+                // Add PropertyInfo to the list
+                _members = new[] {node.Member}.Concat(_members).ToList();
+                
+                return base.VisitMember(node);
+            }
+
+            public void Accept(out List<MemberInfo> members)
+            {
+                _members = new List<MemberInfo>();
+                
+                Visit(_expression);
+
+                members = _members;
+            }
+        }
+
         /// <summary>
         /// Processes the PropLambda
         /// </summary>
         /// <param name="memberExpression"></param>
         /// <returns></returns>
-        private static List<MemberInfo> ProcessPropLambdaMemberExpression(MemberExpression memberExpression)
+        private static List<MemberInfo> ProcessPropLambdaMemberExpression(Expression memberExpression)
         {
-            // ReSharper disable once UseObjectOrCollectionInitializer
-            var memberExpressionPropertyInfos = new LinkedList<MemberInfo>();
-
-            // Initialize the root
-            memberExpressionPropertyInfos.AddFirst(memberExpression.Member);
-
-            // get nested expression
-            var parentExp = memberExpression.Expression;
-
-            // while nested expression is member expression
-            while (parentExp is MemberExpression parentMemberExpression)
-            {
-                // add string property name to the list
-                memberExpressionPropertyInfos.AddFirst(parentMemberExpression.Member);
-
-                // reset the parentExp to go one more level deep 
-                parentExp = parentMemberExpression.Expression;
-            }
+            var memberExpressionVisitor = new MemberExpressionVisitor(memberExpression);
+            
+            // Begin node visits
+            memberExpressionVisitor.Accept(out var members);
 
             // Return the list
-            return memberExpressionPropertyInfos.ToList();
+            return members;
         }
     }
 }

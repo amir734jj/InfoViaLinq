@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -7,12 +8,9 @@ using InfoViaLinq.Interfaces;
 namespace InfoViaLinq.Logic
 {
     public class GetFuncInfo<T> : IGetFuncInfo<T>
-    {        
-        // ReSharper disable once StaticMemberInGenericType
-        private static readonly bool IsNet45 = Type.GetType("System.Reflection.ReflectionContext", false) != null;
-
+    {
         public LambdaExpression LambdaExpression { get; }
-        
+
         /// <summary>
         /// Constructor that takes Lambda expression
         /// </summary>
@@ -21,12 +19,51 @@ namespace InfoViaLinq.Logic
         {
             LambdaExpression = lambdaExpression;
         }
-        
+
         /// <summary>
         /// Returns the method name itself
         /// </summary>
         /// <returns></returns>
         public string GetMethodName() => GetMethodInfo()?.Name;
+
+
+        private sealed class MemberExpressionVisitor : ExpressionVisitor
+        {
+            private readonly Expression _expression;
+
+            private MethodInfo _methodInfo;
+
+            public MemberExpressionVisitor(Expression expression)
+            {
+                _expression = expression;
+            }
+
+            protected override Expression VisitConstant(ConstantExpression node)
+            {
+                if (_methodInfo != null) return base.VisitConstant(node);
+                
+                switch (node.Value)
+                {
+                    case MethodInfo methodInfo:
+                        _methodInfo = methodInfo;
+                        break;
+                    default:
+                        _methodInfo = null;
+                        break;
+                }
+
+                return base.VisitConstant(node);
+            }
+
+            public void Accept(out MethodInfo methodInfo)
+            {
+                _methodInfo = null;
+                
+                Visit(_expression);
+
+                methodInfo = _methodInfo;
+            }
+        }
 
         /// <summary>
         /// Returns the method info
@@ -34,21 +71,11 @@ namespace InfoViaLinq.Logic
         /// <returns></returns>
         public MethodInfo GetMethodInfo()
         {
-            var unaryExpression = (UnaryExpression) LambdaExpression.Body;
-            var methodCallExpression = (MethodCallExpression) unaryExpression.Operand;
+            var memberExpressionVisitor = new MemberExpressionVisitor(LambdaExpression);
 
-            if (IsNet45)
-            {
-                var methodCallObject = (ConstantExpression) methodCallExpression.Object;
-                var methodInfo = (MethodInfo) methodCallObject?.Value;
-                return methodInfo;
-            }
-            else
-            {
-                var methodInfoExpression = (ConstantExpression) methodCallExpression.Arguments.Last();
-                var methodInfo = (MemberInfo) methodInfoExpression.Value;
-                return (MethodInfo) methodInfo;
-            }
+            memberExpressionVisitor.Accept(out var result);
+
+            return result;
         }
     }
 }

@@ -18,25 +18,18 @@ namespace InfoViaLinq
         /// <param name="exp"></param>
         /// <returns></returns>
         protected virtual MemberExpression ToMemeberExpression<TResult>(Expression<Func<TSource, TResult>> exp)
-        {
-            MemberExpression resultExp;
-            var body = exp.Body;
-            
-            switch (body)
+        {            
+            switch (exp.Body)
             {
                 case MemberExpression memberExpression:
-                    resultExp = memberExpression;
-                    break;
+                    return memberExpression;
                 case UnaryExpression unaryExpression:
-                    resultExp = unaryExpression.Operand as MemberExpression;
-                    break;
+                    return unaryExpression.Operand as MemberExpression;
                 case LambdaExpression _:
                     throw new Exception("Lambda expressions cannot be decomposed!");
                 default:
                     throw new Exception("Something is wrong with the type!");
             }
-            
-            return resultExp;
         }
 
         /// <summary>
