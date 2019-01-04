@@ -65,6 +65,15 @@ namespace InfoViaLinq.Logic
 
             return true;
         }
+        
+        /// <summary>
+        /// Returns all property infos
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<PropertyInfo> Members()
+        {
+            return _memberInfos.Cast<PropertyInfo>();
+        }
 
         /// <summary>
         /// Returns the property info via linq
@@ -85,7 +94,7 @@ namespace InfoViaLinq.Logic
             return MemberExpresion.Member.GetCustomAttribute<TAttributeType>();
         }
 
-
+        /// <inheritdoc />
         /// <summary>
         /// Simple Expression visitor to visit MemberExpression types
         /// </summary>

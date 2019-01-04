@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -18,5 +20,7 @@ namespace InfoViaLinq.Interfaces
         TAttributeType GetAttribute<TAttributeType>() where TAttributeType : Attribute;
 
         bool GetValue<TProp>(T source, out TProp value);
+
+        IEnumerable<PropertyInfo> Members();
     }
 }

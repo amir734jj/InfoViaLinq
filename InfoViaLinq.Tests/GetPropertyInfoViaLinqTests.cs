@@ -42,5 +42,24 @@ namespace InfoViaLinq.Tests
             // Assert
             Assert.Equal(expected, result);
         }
+        
+        [Fact]
+        public void Test__Members()
+        {
+            // Arrange
+            var lambda = PersonUtility.LambdaToExp(x => x.Parents.MotherName);
+            var expected = new[] { "Parents", "MotherName" };
+
+            // Act
+            var result = _utility.PropLambda(lambda).Members();
+
+            // Assert
+            result.Zip(expected, (a, b) =>
+            {
+                Assert.Equal(a.Name, b);
+
+                return string.Empty;
+            }).ToList();
+        }
     }
 }
