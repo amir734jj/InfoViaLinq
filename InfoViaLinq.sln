@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoViaLinq", "InfoViaLinq\InfoViaLinq.csproj", "{FCFC3AD8-03D1-4D5F-A195-E32262F7AD88}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{FCFC3AD8-03D1-4D5F-A195-E32262F7AD88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoViaLinq.Tests", "InfoViaLinq.Tests\InfoViaLinq.Tests.csproj", "{578762DF-09FA-4654-8E2A-06F29D9DD4C4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Tests", "Core.Tests\Core.Tests.csproj", "{578762DF-09FA-4654-8E2A-06F29D9DD4C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

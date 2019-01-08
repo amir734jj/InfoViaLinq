@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutoFixture;
+using Core.Tests.Models;
+using InfoViaLinq;
 using InfoViaLinq.Interfaces;
-using InfoViaLinq.Tests.Models;
 using Xunit;
 
-namespace InfoViaLinq.Tests
+namespace Core.Tests
 {
     public static class GetFuncInfoExtension
     {

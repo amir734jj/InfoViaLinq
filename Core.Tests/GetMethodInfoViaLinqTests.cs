@@ -1,7 +1,8 @@
-﻿using InfoViaLinq.Tests.Models;
+﻿using Core.Tests.Models;
+using InfoViaLinq;
 using Xunit;
 
-namespace InfoViaLinq.Tests
+namespace Core.Tests
 {
     public class GetMethdoInfoViaLinqTests
     {
@@ -19,7 +20,7 @@ namespace InfoViaLinq.Tests
         }
 
         [Fact]
-        public void Test__GetMethodInfoViaLinq_MultiParamters()
+        public void Test__GetMethodInfoViaLinq_MultiParameters()
         {
             // Arrange
             const string expected = "DoSomething";

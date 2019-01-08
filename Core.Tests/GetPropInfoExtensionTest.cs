@@ -1,13 +1,15 @@
-﻿using AutoFixture;
+﻿using System.Linq;
+using AutoFixture;
+using Core.Tests.Models;
+using InfoViaLinq;
 using InfoViaLinq.Interfaces;
-using InfoViaLinq.Tests.Models;
 using Xunit;
 
-namespace InfoViaLinq.Tests
+namespace Core.Tests
 {
     public static class GetPropInfoExtension
     {
-        public static object GetValue<T>(this IGetPropInfo<T> getPropInfo, T instance) => getPropInfo.GetPropertyInfo().GetValue(instance);
+        public static object GetValue<T>(this IGetPropInfo<T> getPropInfo, T instance) => getPropInfo.Members().Last().GetValue(instance);
     }
     
     public class GetPropInfoExtensionTest

@@ -1,12 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>InfoViaLinq</AssemblyName>
     <RootNamespace>InfoViaLinq</RootNamespace>
-    <Version>2.0.4</Version>
+    <Version>3.0.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/amir734jj/InfoViaLinq</RepositoryUrl>
-    <PackageReleaseNotes>Rewrote the library from ground-up</PackageReleaseNotes>
+    <PackageReleaseNotes>Another re-write</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/amir734jj/InfoViaLinq</PackageProjectUrl>
     <Description>Enable getting both 1) PropertyInfo 2) MethodInfo all using Linq</Description>
   </PropertyGroup>

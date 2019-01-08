@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace InfoViaLinq.Tests.Models
+namespace Core.Tests.Models
 {
     public class NestedPersonInfo
     {

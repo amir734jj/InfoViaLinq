@@ -1,10 +1,11 @@
 ﻿using System.Linq;
+using Core.Tests.Models;
+using Core.Tests.Utilities;
+using InfoViaLinq;
 using InfoViaLinq.Interfaces;
-using InfoViaLinq.Tests.Models;
-using InfoViaLinq.Tests.Utilities;
 using Xunit;
 
-namespace InfoViaLinq.Tests
+namespace Core.Tests
 {
     public class GetPropertyInfoViaLinqTests
     {
@@ -23,7 +24,7 @@ namespace InfoViaLinq.Tests
             var expected = typeof(Person).GetProperties().First(x => x.Name == "FirstName");
 
             // Act
-            var result = _utility.PropLambda(lambda).GetPropertyInfo();
+            var result = _utility.PropLambda(lambda).Members().First();
 
             // Assert
             Assert.Equal(expected, result);
@@ -37,7 +38,7 @@ namespace InfoViaLinq.Tests
             var expected = typeof(NestedPersonInfo).GetProperties().First(x => x.Name == "MotherName");
 
             // Act
-            var result = _utility.PropLambda(lambda).GetPropertyInfo();
+            var result = _utility.PropLambda(lambda).Members().Last();
 
             // Assert
             Assert.Equal(expected, result);

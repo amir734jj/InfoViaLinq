@@ -17,7 +17,7 @@ namespace InfoViaLinq
         /// </summary>
         /// <param name="exp"></param>
         /// <returns></returns>
-        protected virtual MemberExpression ToMemeberExpression<TResult>(Expression<Func<TSource, TResult>> exp)
+        protected virtual MemberExpression ToMemberExpression<TResult>(Expression<Func<TSource, TResult>> exp)
         {            
             switch (exp.Body)
             {
@@ -39,7 +39,7 @@ namespace InfoViaLinq
         /// <returns></returns>
         public IGetPropInfo<TSource> PropLambda(Expression<Func<TSource, object>> expr)
         {
-            return new GetPropInfo<TSource>(ToMemeberExpression(expr));
+            return new GetPropInfo<TSource>(ToMemberExpression(expr));
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace InfoViaLinq
         /// <returns></returns>
         public IGetPropInfo<TSource> PropLambda<TResult>(Expression<Func<TSource, TResult>> expr)
         {
-            return new GetPropInfo<TSource>(ToMemeberExpression(expr));
+            return new GetPropInfo<TSource>(ToMemberExpression(expr));
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace InfoViaLinq
         }
 
         /// <summary>
-        /// Void with one praramter
+        /// Void with one parameter
         /// </summary>
         /// <param name="expression"></param>
         /// <typeparam name="TParam"></typeparam>
@@ -75,7 +75,7 @@ namespace InfoViaLinq
         }
 
         /// <summary>
-        /// Void with two praramters
+        /// Void with two parameters
         /// </summary>
         /// <param name="expression"></param>
         /// <typeparam name="TParam1"></typeparam>
@@ -87,7 +87,7 @@ namespace InfoViaLinq
         }
 
         /// <summary>
-        /// Void with three praramters
+        /// Void with three parameters
         /// </summary>
         /// <param name="expression"></param>
         /// <typeparam name="TParam1"></typeparam>
@@ -100,7 +100,7 @@ namespace InfoViaLinq
         }
 
         /// <summary>
-        /// Method with no prarameter
+        /// Method with no parameter
         /// </summary>
         /// <param name="expression"></param>
         /// <typeparam name="TResult"></typeparam>
@@ -111,7 +111,7 @@ namespace InfoViaLinq
         }
 
         /// <summary>
-        /// Method with one prarameter
+        /// Method with one parameter
         /// </summary>
         /// <param name="expression"></param>
         /// <typeparam name="TParam"></typeparam>
@@ -136,7 +136,7 @@ namespace InfoViaLinq
         }
 
         /// <summary>
-        /// Method with three prameters
+        /// Method with three parameters
         /// </summary>
         /// <param name="expression"></param>
         /// <typeparam name="TParam1"></typeparam>

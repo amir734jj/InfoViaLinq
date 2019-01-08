@@ -1,10 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Reflection;
+using Core.Tests.Models;
+using Core.Tests.Utilities;
+using InfoViaLinq;
 using InfoViaLinq.Interfaces;
-using InfoViaLinq.Tests.Models;
-using InfoViaLinq.Tests.Utilities;
 using Xunit;
 
-namespace InfoViaLinq.Tests
+namespace Core.Tests
 {
     public class GetAttributeViaLinqTests
     {
@@ -23,7 +26,7 @@ namespace InfoViaLinq.Tests
             const string expected = "Attribute.FirstName";
 
             // Act
-            var result = _utility.PropLambda(lambda).GetAttribute<DisplayAttribute>()?.Name;
+            var result = _utility.PropLambda(lambda).Members().Last().GetCustomAttribute<DisplayAttribute>().Name;
 
             // Assert
             Assert.Equal(expected, result);
@@ -37,7 +40,7 @@ namespace InfoViaLinq.Tests
             const string expected = "Attribute.MotherName";
 
             // Act
-            var result = _utility.PropLambda(lambda).GetAttribute<DisplayAttribute>()?.Name;
+            var result = _utility.PropLambda(lambda).Members().Last().GetCustomAttribute<DisplayAttribute>().Name;
 
             // Assert
             Assert.Equal(expected, result);
@@ -51,7 +54,7 @@ namespace InfoViaLinq.Tests
             const string expected = "Attribute.FirstName";
 
             // Act
-            var result = _utility.PropLambda(lambda).GetAttribute<DisplayAttribute>()?.Name;
+            var result = _utility.PropLambda(lambda).Members().Last().GetCustomAttribute<DisplayAttribute>().Name;
 
             // Assert
             Assert.Equal(expected, result);

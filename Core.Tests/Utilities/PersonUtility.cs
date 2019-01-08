@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq.Expressions;
-using InfoViaLinq.Tests.Models;
+using Core.Tests.Models;
 
-namespace InfoViaLinq.Tests.Utilities
+namespace Core.Tests.Utilities
 {
     public class PersonUtility
     {
