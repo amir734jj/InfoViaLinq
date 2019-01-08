@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Reflection;
 
 namespace InfoViaLinq.Interfaces
@@ -8,6 +9,8 @@ namespace InfoViaLinq.Interfaces
     /// </summary>
     public interface IGetPropInfo<in T>
     {
+        MemberExpression MemberExpresion { get; }
+        
         /// <summary>
         /// Returns all member PropertyInfos
         /// </summary>

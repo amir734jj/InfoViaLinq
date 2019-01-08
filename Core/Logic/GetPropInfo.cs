@@ -11,7 +11,7 @@ namespace InfoViaLinq.Logic
     {
         private readonly List<MemberInfo> _memberInfos;
         
-        private const string Delimiter = ".";
+        private readonly IEnumerable<KeyValuePair<PropertyInfo, PropertyInfo>> _mappedMembers;
 
         public MemberExpression MemberExpresion { get; }
 
@@ -23,7 +23,9 @@ namespace InfoViaLinq.Logic
         {
             MemberExpresion = memberExpression;
 
-            _memberInfos = ProcessPropLambdaMemberExpression(memberExpression);
+            _memberInfos = ResolveMembers(memberExpression);
+            
+            _mappedMembers = ResolveMappedMembers(typeof(TSource), _memberInfos);
         }
 
         /// <summary>
@@ -37,21 +39,7 @@ namespace InfoViaLinq.Logic
 
         public IEnumerable<KeyValuePair<PropertyInfo, PropertyInfo>> MappedMembers()
         {
-            var currentType = typeof(TSource);
-
-            return _memberInfos.Select((x, index) =>
-            {
-                var mappedPropertyInfo = currentType.GetProperty(x.Name) ?? throw new Exception();
-
-                var keyValuePair = new KeyValuePair<PropertyInfo, PropertyInfo>((PropertyInfo) x, mappedPropertyInfo);
-
-                if (index + 1 < _memberInfos.Count)
-                {
-                    currentType = mappedPropertyInfo.DeclaringType;
-                }
-
-                return keyValuePair;
-            });
+            return _mappedMembers;
         }
 
         /// <inheritdoc />
@@ -92,7 +80,7 @@ namespace InfoViaLinq.Logic
         /// </summary>
         /// <param name="memberExpression"></param>
         /// <returns></returns>
-        private static List<MemberInfo> ProcessPropLambdaMemberExpression(Expression memberExpression)
+        private static List<MemberInfo> ResolveMembers(Expression memberExpression)
         {
             var memberExpressionVisitor = new MemberExpressionVisitor(memberExpression);
             
@@ -101,6 +89,29 @@ namespace InfoViaLinq.Logic
 
             // Return the list
             return members;
+        }
+
+        /// <summary>
+        /// Resolve mapped members
+        /// </summary>
+        /// <param name="currentType"></param>
+        /// <param name="members"></param>
+        /// <returns></returns>
+        private static IEnumerable<KeyValuePair<PropertyInfo, PropertyInfo>> ResolveMappedMembers(Type currentType, IReadOnlyCollection<MemberInfo> members)
+        {
+            return members.Select((x, index) =>
+            {
+                var mappedPropertyInfo = currentType.GetProperty(x.Name) ?? (PropertyInfo) x;
+
+                var keyValuePair = new KeyValuePair<PropertyInfo, PropertyInfo>((PropertyInfo) x, mappedPropertyInfo);
+
+                if (index + 1 < members.Count)
+                {
+                    currentType = mappedPropertyInfo.DeclaringType;
+                }
+
+                return keyValuePair;
+            }).ToList();
         }
     }
 }
