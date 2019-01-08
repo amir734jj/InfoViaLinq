@@ -10,13 +10,13 @@ Examples to get `PropertyInfo` via Linq:
 IInfoViaLinq<Person> _utility = InfoViaLinq<Person>.New();
 
 // returns: "Parents.GreatParents.Parents.FatherName"
-_utility.PropLambda(x => x.Parents.GreatParents.Parents.FatherName).GetPropertyName();
+string.Join('.', _utility.PropLambda(x => x.Parents.GreatParents.Parents.FatherName).Members().Select(x => x.Name));
 
 // returns custom attributes via linq
-_utility.PropLambda(x => x.Parents.GreatParents.Parents.FatherName).GetAttribute<DisplayAttribute>();
+_utility.PropLambda(x => x.Parents.GreatParents.Parents.FatherName).Members().Last().GetAttribute<DisplayAttribute>();
 
 // returns PropertyInfo of "FatherName" via linq
-_utility.PropLambda(x => x.Parents.GreatParents.Parents.FatherName);
+_utility.PropLambda(x => x.Parents.GreatParents.Parents.FatherName).Members().Last();
 ```
 
 Examples to get `MethodInfo` via Linq:
