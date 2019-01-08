@@ -8,5 +8,6 @@
     <PackageReleaseNotes>Another re-write</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/amir734jj/InfoViaLinq</PackageProjectUrl>
     <Description>Enable getting both 1) PropertyInfo 2) MethodInfo all using Linq</Description>
+    <AssemblyName>InfoViaLinq</AssemblyName>
   </PropertyGroup>
 </Project>
