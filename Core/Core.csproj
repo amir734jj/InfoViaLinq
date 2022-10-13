@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>InfoViaLinq</RootNamespace>
-    <Version>3.0.2</Version>
+    <Version>3.0.3</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/amir734jj/InfoViaLinq</RepositoryUrl>
     <PackageReleaseNotes>Clean up and removed unnecessary functions</PackageReleaseNotes>
