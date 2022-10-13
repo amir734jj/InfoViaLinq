@@ -12,8 +12,6 @@ namespace InfoViaLinq.Interfaces
         #region Property
         
         IGetPropInfo<TSource> PropLambda(Expression<Func<TSource, object>> expr);
-        
-        IGetPropInfo<TSource> PropLambda<TResult>(Expression<Func<TSource, TResult>> expr);
 
         #endregion
         

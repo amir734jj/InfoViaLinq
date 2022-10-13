@@ -7,13 +7,13 @@ using InfoViaLinq.Interfaces;
 
 namespace InfoViaLinq.Logic
 {
-    public class GetPropInfo<TSource> : IGetPropInfo<TSource>
+    internal class GetPropInfo<TSource> : IGetPropInfo<TSource>
     {
         private readonly List<MemberInfo> _memberInfos;
         
         private readonly IEnumerable<KeyValuePair<PropertyInfo, PropertyInfo>> _mappedMembers;
 
-        public MemberExpression MemberExpresion { get; }
+        public MemberExpression MemberExpression { get; }
 
         /// <summary>
         /// Constructor that takes the member expression
@@ -21,7 +21,7 @@ namespace InfoViaLinq.Logic
         /// <param name="memberExpression"></param>
         public GetPropInfo(MemberExpression memberExpression)
         {
-            MemberExpresion = memberExpression;
+            MemberExpression = memberExpression;
 
             _memberInfos = ResolveMembers(memberExpression);
             

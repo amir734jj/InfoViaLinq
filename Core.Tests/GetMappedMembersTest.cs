@@ -29,12 +29,12 @@ namespace Core.Tests
     {
         public static IEnumerable<KeyValuePair<PropertyInfo, PropertyInfo>> GetBasic<T>() where T : IModel
         {
-            return InfoViaLinq<T>.New().PropLambda(x => x.Name).MappedMembers();
+            return new InfoViaLinq<T>().PropLambda(x => x.Name).MappedMembers();
         }
 
         public static IEnumerable<KeyValuePair<PropertyInfo, PropertyInfo>> GetComplex<T>() where T : IModel
         {
-            return InfoViaLinq<T>.New().PropLambda(x => x.Ref.Ref.Name).MappedMembers();
+            return new InfoViaLinq<T>().PropLambda(x => x.Ref.Ref.Name).MappedMembers();
         }
     }
 

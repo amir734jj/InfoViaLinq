@@ -21,7 +21,7 @@ namespace Core.Tests
 
         public GetFuncInfoExtensionTest()
         {
-            _utility = InfoViaLinq<Person>.New();
+            _utility = new InfoViaLinq<Person>();
             _fixture = new Fixture();
         }
 
@@ -29,7 +29,7 @@ namespace Core.Tests
         public void Test__GetGenericArgs()
         {
             // Arrange
-            var args = InfoViaLinq<Person>.New().FuncLambda<int, double, string, string>(x => x.DoSomething).GetGenericArgs();    
+            var args = new InfoViaLinq<Person>().FuncLambda<int, double, string, string>(x => x.DoSomething).GetGenericArgs();    
             
             // Act, Assert
             Assert.Empty(args);

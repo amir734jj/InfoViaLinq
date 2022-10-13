@@ -9,7 +9,7 @@ namespace InfoViaLinq.Interfaces
     /// </summary>
     public interface IGetPropInfo<in T>
     {
-        MemberExpression MemberExpresion { get; }
+        MemberExpression MemberExpression { get; }
         
         /// <summary>
         /// Returns all member PropertyInfos

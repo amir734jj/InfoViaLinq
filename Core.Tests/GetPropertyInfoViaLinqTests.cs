@@ -13,7 +13,7 @@ namespace Core.Tests
 
         public GetPropertyInfoViaLinqTests()
         {
-            _utility = InfoViaLinq<Person>.New();
+            _utility = new InfoViaLinq<Person>();
         }
         
         [Fact]

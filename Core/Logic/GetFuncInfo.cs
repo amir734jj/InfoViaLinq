@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 using System.Reflection;
 using InfoViaLinq.Interfaces;
 
 namespace InfoViaLinq.Logic
 {
-    public class GetFuncInfo<T> : IGetFuncInfo<T>
+    internal class GetFuncInfo<T> : IGetFuncInfo<T>
     {
         public LambdaExpression LambdaExpression { get; }
 

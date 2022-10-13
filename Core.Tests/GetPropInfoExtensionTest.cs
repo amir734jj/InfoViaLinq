@@ -20,7 +20,7 @@ namespace Core.Tests
 
         public GetPropInfoExtensionTest()
         {
-            _utility = InfoViaLinq<Person>.New();
+            _utility = new InfoViaLinq<Person>();
             _fixture = new Fixture();
         }
 
