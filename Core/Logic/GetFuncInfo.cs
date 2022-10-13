@@ -17,13 +17,6 @@ namespace InfoViaLinq.Logic
             LambdaExpression = lambdaExpression;
         }
 
-        /// <summary>
-        /// Returns the method name itself
-        /// </summary>
-        /// <returns></returns>
-        public string GetMethodName() => GetMethodInfo()?.Name;
-
-
         private sealed class MemberExpressionVisitor : ExpressionVisitor
         {
             private readonly Expression _expression;

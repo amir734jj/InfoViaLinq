@@ -11,8 +11,6 @@ namespace InfoViaLinq.Logic
     {
         private readonly List<MemberInfo> _memberInfos;
         
-        private readonly IEnumerable<KeyValuePair<PropertyInfo, PropertyInfo>> _mappedMembers;
-
         public MemberExpression MemberExpression { get; }
 
         /// <summary>
@@ -24,8 +22,6 @@ namespace InfoViaLinq.Logic
             MemberExpression = memberExpression;
 
             _memberInfos = ResolveMembers(memberExpression);
-            
-            _mappedMembers = ResolveMappedMembers(typeof(TSource), _memberInfos);
         }
 
         /// <summary>
@@ -35,11 +31,6 @@ namespace InfoViaLinq.Logic
         public IEnumerable<PropertyInfo> Members()
         {
             return _memberInfos.Cast<PropertyInfo>();
-        }
-
-        public IEnumerable<KeyValuePair<PropertyInfo, PropertyInfo>> MappedMembers()
-        {
-            return _mappedMembers;
         }
 
         /// <inheritdoc />
@@ -89,29 +80,6 @@ namespace InfoViaLinq.Logic
 
             // Return the list
             return members;
-        }
-
-        /// <summary>
-        /// Resolve mapped members
-        /// </summary>
-        /// <param name="currentType"></param>
-        /// <param name="members"></param>
-        /// <returns></returns>
-        private static IEnumerable<KeyValuePair<PropertyInfo, PropertyInfo>> ResolveMappedMembers(Type currentType, IReadOnlyCollection<MemberInfo> members)
-        {
-            return members.Select((x, index) =>
-            {
-                var mappedPropertyInfo = currentType.GetProperty(x.Name) ?? (PropertyInfo) x;
-
-                var keyValuePair = new KeyValuePair<PropertyInfo, PropertyInfo>((PropertyInfo) x, mappedPropertyInfo);
-
-                if (index + 1 < members.Count)
-                {
-                    currentType = mappedPropertyInfo.DeclaringType;
-                }
-
-                return keyValuePair;
-            }).ToList();
         }
     }
 }
