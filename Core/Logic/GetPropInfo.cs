@@ -50,8 +50,20 @@ namespace InfoViaLinq.Logic
             
             protected override Expression VisitMember(MemberExpression node)
             {
+                MemberInfo targetMemberInfo;
+                
+                // Convert FieldInfo which is a backing field of property to PropertyInfo
+                if (node.Member is FieldInfo fieldInfo)
+                {
+                    targetMemberInfo = fieldInfo.DeclaringType?.GetProperty(fieldInfo.Name);
+                }
+                else
+                {
+                    targetMemberInfo = node.Member;
+                }
+                
                 // Add PropertyInfo to the list
-                _members = new[] {node.Member}.Concat(_members).ToList();
+                _members = new[] {targetMemberInfo}.Concat(_members).ToList();
                 
                 return base.VisitMember(node);
             }

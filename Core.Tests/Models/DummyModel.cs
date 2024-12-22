@@ -6,7 +6,7 @@ namespace Core.Tests.Models
     public class NestedPersonInfo
     {
         [Display(Name = "Attribute.MotherName")]
-        public string MotherName { get; set; }
+        public string? MotherName { get; set; }
 
         public string FatherName { get; set; }
         
@@ -33,7 +33,9 @@ namespace Core.Tests.Models
         public DateTime DateOfBirth { get; set; }
         
         public char Initial { get; set; }
-        
+
+        public int? NullableInt { get; set; }
+
         public NestedPersonInfo Parents { get; set; }
 
         public string DoSomething(int prop1, double prop2, string prop3)

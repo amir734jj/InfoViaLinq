@@ -34,7 +34,7 @@ namespace Core.Tests
         public void Test__Complex()
         {
             // Arrange
-            var lambda = PersonUtility.LambdaToExp(x => x.Parents.MotherName);
+            var lambda = PersonUtility.LambdaToExp(x => x.Parents.MotherName!);
             var expected = typeof(NestedPersonInfo).GetProperties().First(x => x.Name == "MotherName");
 
             // Act
@@ -52,7 +52,26 @@ namespace Core.Tests
             var expected = new[] { "Parents", "MotherName" };
 
             // Act
-            var result = _utility.PropLambda(lambda).Members();
+            var result = _utility.PropLambda(lambda).Members().ToList();
+
+            // Assert
+            result.Zip(expected, (a, b) =>
+            {
+                Assert.Equal(a.Name, b);
+
+                return string.Empty;
+            }).ToList();
+        }
+
+        [Fact]
+        public void Test__Nullable()
+        {
+            // Arrange
+            var lambda = PersonUtility.LambdaToExp(x => x.NullableInt);
+            var expected = new[] { "NullableInt" };
+
+            // Act
+            var result = _utility.PropLambda(lambda).Members().ToList();
 
             // Assert
             result.Zip(expected, (a, b) =>
