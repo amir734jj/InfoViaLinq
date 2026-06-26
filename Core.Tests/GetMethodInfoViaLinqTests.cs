@@ -31,5 +31,83 @@ namespace Core.Tests
             // Assert
             Assert.Equal(expected, name);
         }
+
+        [Fact]
+        public void Test__Action_NoParameter()
+        {
+            // Arrange
+            const string expected = "DoNothing";
+
+            // Act
+            var name = new InfoViaLinq<Person>().FuncLambda(x => x.DoNothing).GetMethodInfo().Name;
+
+            // Assert
+            Assert.Equal(expected, name);
+        }
+
+        [Fact]
+        public void Test__Action_OneParameter()
+        {
+            // Arrange
+            const string expected = "DoNothing";
+
+            // Act
+            var name = new InfoViaLinq<Person>().FuncLambda<int>(x => x.DoNothing).GetMethodInfo().Name;
+
+            // Assert
+            Assert.Equal(expected, name);
+        }
+
+        [Fact]
+        public void Test__Action_TwoParameters()
+        {
+            // Arrange
+            const string expected = "DoNothing";
+
+            // Act
+            var name = new InfoViaLinq<Person>().FuncLambda<int, double>(x => x.DoNothing).GetMethodInfo().Name;
+
+            // Assert
+            Assert.Equal(expected, name);
+        }
+
+        [Fact]
+        public void Test__Action_ThreeParameters()
+        {
+            // Arrange
+            const string expected = "DoNothing";
+
+            // Act
+            var name = new InfoViaLinq<Person>().FuncLambda<int, double, string>(x => x.DoNothing).GetMethodInfo().Name;
+
+            // Assert
+            Assert.Equal(expected, name);
+        }
+
+        [Fact]
+        public void Test__Func_OneParameter()
+        {
+            // Arrange
+            const string expected = "Square";
+
+            // Act
+            var name = new InfoViaLinq<Person>().FuncLambda<int, int>(x => x.Square).GetMethodInfo().Name;
+
+            // Assert
+            Assert.Equal(expected, name);
+        }
+
+        [Fact]
+        public void Test__Func_TwoParameters()
+        {
+            // Arrange
+            const string expected = "Combine";
+
+            // Act
+            var name = new InfoViaLinq<Person>().FuncLambda<int, double, string>(x => x.Combine).GetMethodInfo().Name;
+
+            // Assert
+            Assert.Equal(expected, name);
+        }
     }
 }

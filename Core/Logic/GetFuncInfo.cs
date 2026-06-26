@@ -30,16 +30,9 @@ namespace InfoViaLinq.Logic
 
             protected override Expression VisitConstant(ConstantExpression node)
             {
-                if (_methodInfo != null) return base.VisitConstant(node);
-                
-                switch (node.Value)
+                if (_methodInfo == null && node.Value is MethodInfo methodInfo)
                 {
-                    case MethodInfo methodInfo:
-                        _methodInfo = methodInfo;
-                        break;
-                    default:
-                        _methodInfo = null;
-                        break;
+                    _methodInfo = methodInfo;
                 }
 
                 return base.VisitConstant(node);

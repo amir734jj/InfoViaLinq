@@ -38,6 +38,38 @@ namespace Core.Tests.Models
 
         public NestedPersonInfo Parents { get; set; }
 
+        public int PublicField;
+
+        public void DoNothing()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DoNothing(int prop1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DoNothing(int prop1, double prop2)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DoNothing(int prop1, double prop2, string prop3)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Square(int prop1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string Combine(int prop1, double prop2)
+        {
+            throw new NotImplementedException();
+        }
+
         public string DoSomething(int prop1, double prop2, string prop3)
         {
             throw new NotImplementedException();
